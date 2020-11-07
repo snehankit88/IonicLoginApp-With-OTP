@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="recaptcha-container" style="display:none;"> </div>
+
+  <div *ngIf="!otpSent">
+    <ion-note style="font-weight:bold;font-size:medium;">
+      Enter Phone number
+    </ion-note>
+    
+    <ion-item>
+      <ion-label position="floating">Phone Number</ion-label>
+      <ion-input type="number"  id="phonenumber" [(ngModel)]="user.phoneNumber"></ion-input>
+    </ion-item>
+    
+    <ion-button style="float:right; margin-top:30px;" (click)="sendOTP(user.phoneNumber)">
+    Send OTP
+    </ion-button>
+  </div>
+  
+  <div *ngIf="otpSent">
+  
+  <ion-note style="font-weight:bold;font-size:medium;">
+      OTP sent to {{phonenumber}}
+    </ion-note>
+    
+    <ion-item>
+      <ion-label position="floating">Verify OTP</ion-label>
+      <ion-input id="otp"></ion-input>
+    </ion-item>
+    
+    <ion-button style="float:right; margin-top:30px;" (click)="verifyOTP()">
+    Verify OTP
+    </ion-button>
+  
+  </div>
+</ion-content>
